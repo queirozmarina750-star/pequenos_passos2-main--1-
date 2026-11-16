@@ -1,0 +1,41 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Novo Responsável - Pequenos Passos</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+<header>
+    <h1>Pequenos Passos</h1>
+    <h2>Cadastrar Responsável</h2>
+</header>
+
+<main class="container">
+
+    <form action="/responsaveis/cadastrar" method="POST">
+
+        <label>Nome completo:</label>
+        <input type="text" name="nome" required>
+
+        <label>CPF:</label>
+        <input type="text" name="cpf" required>
+
+        <label>Telefone:</label>
+        <input type="text" name="telefone" required>
+
+        <label>E-mail:</label>
+        <input type="email" name="email">
+
+        <button type="submit">Cadastrar responsável</button>
+
+        <a href="/responsaveis">Cancelar</a>
+
+    </form>
+
+</main>
+
+</body>
+</html>

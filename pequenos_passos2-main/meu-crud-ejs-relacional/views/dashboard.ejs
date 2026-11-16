@@ -1,0 +1,31 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel - Pequenos Passos</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Pequenos Passos</h1>
+        <p>Clínica Pediátrica</p>
+    </header>
+
+    <main class="container">
+        <h2>Bem-vindo(a), <%= usuario.nome %>!</h2>
+
+        <p>Gerencie as informações da clínica.</p>
+
+        <nav>
+            <a href="/responsaveis">Responsáveis</a>
+            <a href="/criancas">Crianças</a>
+            <a href="/agendamentos">Agendamentos</a>
+            <a href="/logout">Sair</a>
+        </nav>
+    </main>
+
+</body>
+</html>

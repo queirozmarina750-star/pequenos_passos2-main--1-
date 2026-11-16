@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agendamentos - Pequenos Passos</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Pequenos Passos</h1>
+        <h2>Agendamento de Consultas</h2>
+    </header>
+
+    <main class="container">
+
+        <form action="/agendamentos/cadastrar" method="POST">
+
+            <label>Criança:</label>
+            <select name="crianca_id" required>
+                <option value="">Selecione a criança</option>
+
+                <% criancas.forEach(crianca => { %>
+                    <option value="<%= crianca.id_crianca %>">
+                        <%= crianca.nome %>
+                    </option>
+                <% }) %>
+
+            </select>
+
+            <label>Data da consulta:</label>
+            <input type="date" name="data_consulta" required>
+
+            <label>Horário:</label>
+            <input type="time" name="horario" required>
+
+            <label>Especialidade:</label>
+            <input type="text" name="especialidade" required>
+
+            <label>Observações:</label>
+            <textarea name="observacoes"></textarea>
+
+            <button type="submit">Agendar consulta</button>
+
+        </form>
+
+        <h2>Consultas agendadas</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Criança</th>
+                    <th>Data</th>
+                    <th>Horário</th>
+                    <th>Especialidade</th>
+                    <th>Observações</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                <% if (agendamentos.length > 0) { %>
+
+                    <% agendamentos.forEach(agendamento => { %>
+
+                        <tr>
+                            <td>
+                                <%= agendamento.nome_crianca %>
+                            </td>
+
+                            <td>
+                                <%= agendamento.data_consulta %>
+                            </td>
+
+                            <td>
+                                <%= agendamento.horario %>
+                            </td>
+
+                            <td>
+                                <%= agendamento.especialidade %>
+                            </td>
+
+                            <td>
+                                <%= agendamento.observacoes || 'Sem observações' %>
+                            </td>
+
+                            <td>
+                                <a href="/agendamentos/editar/<%= agendamento.id_agendamento %>">
+                                    Editar
+                                </a>
+
+                                |
+
+                                <a
+                                    href="/agendamentos/excluir/<%= agendamento.id_agendamento %>"
+                                    onclick="return confirm('Deseja realmente excluir este agendamento?')"
+                                >
+                                    Excluir
+                                </a>
+                            </td>
+                        </tr>
+
+                    <% }) %>
+
+                <% } else { %>
+
+                    <tr>
+                        <td colspan="6">
+                            Nenhuma consulta agendada.
+                        </td>
+                    </tr>
+
+                <% } %>
+
+            </tbody>
+        </table>
+
+        <br>
+
+        <a href="/dashboard">Voltar ao painel</a>
+
+    </main>
+
+</body>
+</html>

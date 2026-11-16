@@ -1,0 +1,45 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Responsável - Pequenos Passos</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+<header>
+    <h1>Pequenos Passos</h1>
+    <h2>Editar Responsável</h2>
+</header>
+
+<main class="container">
+
+    <form action="/responsaveis/editar/<%= responsavel.id_responsavel %>" method="POST">
+
+        <label>Nome completo:</label>
+        <input type="text" name="nome"
+            value="<%= responsavel.nome %>" required>
+
+        <label>CPF:</label>
+        <input type="text" name="cpf"
+            placeholder="Digite o CPF novamente" required>
+
+        <label>Telefone:</label>
+        <input type="text" name="telefone"
+            value="<%= responsavel.telefone %>" required>
+
+        <label>E-mail:</label>
+        <input type="email" name="email"
+            value="<%= responsavel.email || '' %>">
+
+        <button type="submit">Salvar alterações</button>
+
+        <a href="/responsaveis">Cancelar</a>
+
+    </form>
+
+</main>
+
+</body>
+</html>

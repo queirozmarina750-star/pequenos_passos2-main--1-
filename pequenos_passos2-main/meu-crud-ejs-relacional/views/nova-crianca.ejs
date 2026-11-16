@@ -1,0 +1,47 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Nova Criança - Pequenos Passos</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+<header>
+    <h1>Pequenos Passos</h1>
+    <h2>Cadastrar Criança</h2>
+</header>
+
+<main class="container">
+
+    <form action="/criancas/cadastrar" method="POST">
+
+        <label>Nome da criança:</label>
+        <input type="text" name="nome" required>
+
+        <label>Data de nascimento:</label>
+        <input type="date" name="data_nascimento" required>
+
+        <label>Responsável:</label>
+        <select name="responsavel_id" required>
+            <option value="">Selecione um responsável</option>
+
+            <% responsaveis.forEach(responsavel => { %>
+                <option value="<%= responsavel.id_responsavel %>">
+                    <%= responsavel.nome %>
+                </option>
+            <% }) %>
+
+        </select>
+
+        <button type="submit">Cadastrar criança</button>
+
+        <a href="/criancas">Cancelar</a>
+
+    </form>
+
+</main>
+
+</body>
+</html>

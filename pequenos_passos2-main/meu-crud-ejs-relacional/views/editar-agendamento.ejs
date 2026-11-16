@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Agendamento - Pequenos Passos</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+<header>
+    <h1>Pequenos Passos</h1>
+    <h2>Editar Agendamento</h2>
+</header>
+
+<main class="container">
+
+    <form action="/agendamentos/editar/<%= agendamento.id_agendamento %>" method="POST">
+
+        <label>Criança:</label>
+        <select name="crianca_id" required>
+            <% criancas.forEach(crianca => { %>
+                <option value="<%= crianca.id_crianca %>"
+                    <%= crianca.id_crianca == agendamento.crianca_id ? 'selected' : '' %>>
+                    <%= crianca.nome %>
+                </option>
+            <% }) %>
+        </select>
+
+        <label>Data da consulta:</label>
+        <input type="date" name="data_consulta"
+            value="<%= String(agendamento.data_consulta).slice(0, 10) %>" required>
+
+        <label>Horário:</label>
+        <input type="time" name="horario"
+            value="<%= String(agendamento.horario).slice(0, 5) %>" required>
+
+        <label>Especialidade:</label>
+        <input type="text" name="especialidade"
+            value="<%= agendamento.especialidade || '' %>" required>
+
+        <label>Observações:</label>
+        <textarea name="observacoes"><%= agendamento.observacoes || '' %></textarea>
+
+        <button type="submit">Salvar alterações</button>
+
+        <a href="/agendamentos">Cancelar</a>
+
+    </form>
+
+</main>
+
+</body>
+</html>

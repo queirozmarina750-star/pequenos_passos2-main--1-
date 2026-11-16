@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crianças - Pequenos Passos</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Pequenos Passos</h1>
+        <h2>Cadastro de Crianças</h2>
+    </header>
+
+    <main class="container">
+
+        <form action="/criancas/cadastrar" method="POST">
+
+            <label>Nome da criança:</label>
+            <input type="text" name="nome" required>
+
+            <label>Data de nascimento:</label>
+            <input type="date" name="data_nascimento" required>
+
+            <label>Responsável:</label>
+            <select name="responsavel_id" required>
+                <option value="">Selecione o responsável</option>
+
+                <% responsaveis.forEach(responsavel => { %>
+                    <option value="<%= responsavel.id_responsavel %>">
+                        <%= responsavel.nome %>
+                    </option>
+                <% }) %>
+
+            </select>
+
+            <button type="submit">Cadastrar criança</button>
+
+        </form>
+
+        <h2>Crianças cadastradas</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Nascimento</th>
+                    <th>Responsável</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <% criancas.forEach(crianca => { %>
+                    <tr>
+                        <td><%= crianca.nome %></td>
+                        <td><%= crianca.data_nascimento %></td>
+                        <td><%= crianca.nome_responsavel %></td>
+
+                        <td>
+                            <a href="/criancas/editar/<%= crianca.id_crianca %>">
+                                Editar
+                            </a>
+
+                            |
+
+                            <a href="/criancas/excluir/<%= crianca.id_crianca %>"
+                               onclick="return confirm('Deseja realmente excluir esta criança?')">
+                                Excluir
+                            </a>
+                        </td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+
+        <a href="/dashboard">Voltar ao painel</a>
+
+    </main>
+
+</body>
+</html>
